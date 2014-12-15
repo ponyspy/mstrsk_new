@@ -1,0 +1,33 @@
+extends ../../layout
+
+block title
+	title ДОБАВИТЬ ЕДИНИЦУ ХРАННЕНИЯ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/add.js')
+
+block content
+	.form_block
+		a.back_link(href='/auth/objects') < Назад
+		.title ДОБАВИТЬ ЕДИНИЦУ ХРАННЕНИЯ
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Заголовок:
+			input.ru(type="text", name="ru[title]",)
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Инвентарный номер:
+			input(type="text", name="inventory",)
+			.form_title Интервал начало:
+			input.ru(type="text", name="interval[start]",)
+			.form_title Интервал конец:
+			input.ru(type="text", name="interval[end]",)
+			.form_title Изображение:
+			input(type="file", name="image")
+			br
+			br
+			input(type='submit', value='отправить')

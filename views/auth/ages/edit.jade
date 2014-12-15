@@ -1,0 +1,31 @@
+extends ../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ ПЕРИОД
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/add.js')
+
+block content
+	.form_block
+		a.back_link(href='../') < Назад
+		.title РЕДАКТИРОВАТЬ ПЕРИОД
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Название:
+			input.ru(type="text", name="ru[title]", value=age.i18n.title.get('ru'))
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)= age.i18n.description.get('ru')
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Интервал начало:
+			input.ru(type="text", name="interval[start]", value=age.meta.interval.start.getUTCFullYear())
+			.form_title Интервал конец:
+			input.ru(type="text", name="interval[end]", value=age.meta.interval.end.getUTCFullYear())
+			.form_title Изображение:
+			input(type='file', name='photo')
+			br
+			br
+			input(type='submit', value='сохранить')

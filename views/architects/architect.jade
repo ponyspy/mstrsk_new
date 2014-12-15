@@ -1,0 +1,30 @@
+extends ../layout
+
+block title
+	title= 'АРХИТЕКТОРЫ | ' + architect.i18n.name.get('ru').toUpperCase()
+
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/architect.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/architect.js' + version)
+
+block content_title
+	.architect_header
+		a.architects_all(href='/architects') Архитекторы
+		.architect_title= architect.i18n.name.get('ru')
+
+block content
+	.architect_description= architect.i18n.description.get('ru')
+	.architect_attached_block
+		.attached_title_block
+			.attached_title_line
+			.attached_title Проекты архитектора
+		.architect_attached_objects
+			each object in objects
+				- var image = object.images.length > 0 ? object.images[0].thumb : ''
+				a.architect_object(href='/objects/' + object._id, style='background-image:url(' + image + ')')
+					.architect_object_title_block
+						.architect_object_title= object.i18n.title.get('ru')
+						.architect_object_date= object.meta.interval.start.getUTCFullYear() + ' - ' + object.meta.interval.end.getUTCFullYear()

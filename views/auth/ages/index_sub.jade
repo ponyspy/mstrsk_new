@@ -1,0 +1,25 @@
+extends ../../layout
+
+block title
+	title СПИСОК ЭПОХ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/lists.js')
+
+block content
+	a.back_link(href='/auth/ages/') < Назад
+	.title СПИСОК ЭПОХ
+	br
+	a.add(href='/auth/ages/' + age._id + '/sub/add') добавить эпоху
+	br
+	br
+	.main_menu_block
+		if (age.sub.length > 0)
+			each age_sub in age.sub
+				.age
+					a.rm_age(href='#', id=age_sub._id)= 'удалить '
+					!=' | '
+					a(href='/auth/ages/' + age._id + '/sub/edit/' + age_sub._id)= age_sub.i18n.title.get('ru')

@@ -1,0 +1,42 @@
+extends ../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ СПЕЦПРОЕКТ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/add.js')
+
+block content
+	.form_block
+		a.back_link(href='/auth/projects') < Назад
+		.title РЕДАКТИРОВАТЬ СПЕЦПРОЕКТ
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Имя:
+			input.ru(type="text", name="ru[title]", value=project.i18n.title.get('ru'))
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)= project.i18n.description.get('ru')
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Объекты:
+			.snake
+				button(type='button').back -
+				if project.objects.length > 0
+					each self_project in project.objects
+						select(name='objects')
+							option(value='') нет
+							each object in objects
+								option(value=object._id, selected=self_project == object._id.toString())= object.i18n.title.get('ru')
+				else
+					select(name='objects')
+						option(value='') нет
+						each object in objects
+							option(value=object._id)= object.i18n.title.get('ru')
+				button(type='button').forward +
+			.form_title Фото:
+			input(type="file", name="photo")
+			br
+			br
+			input(type='submit', value='сохранить')

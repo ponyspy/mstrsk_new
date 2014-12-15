@@ -1,0 +1,24 @@
+extends ../../layout
+
+block title
+	title СПИСОК СПЕЦПРОЕКТОВ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/lists.js')
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title СПИСОК СПЕЦПРОЕКТОВ
+	br
+	a.add(href='/auth/projects/add') добавить спецпроект
+	br
+	br
+	.main_menu_block
+		each project in projects
+			.project
+				a.rm_project(href='#', id=project._id)= 'удалить '
+				!=' | '
+				a(href='/auth/projects/edit/' + project._id)= project.i18n.title.get('ru')

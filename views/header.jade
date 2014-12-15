@@ -1,0 +1,14 @@
+- var version = '?ver=5'
+meta(charset="utf-8")
+meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+link(rel='shortcut icon', href='/images/design/favicon.png', type='image/png')
+block title
+	title= title
+link(rel='stylesheet', type='text/css', href='/build/libs/css/fonts.css' + version)
+link(rel='stylesheet', type='text/css', href='/build/css/global.css' + version)
+block content_style
+	- var version = '?ver=5'
+script(type='text/javascript', src='/build/libs/js/jquery-2.1.1.min.js' + version)
+script(type='text/javascript', src='/build/js/global.js' + version)
+block content_scripts
+	- var version = '?ver=5'

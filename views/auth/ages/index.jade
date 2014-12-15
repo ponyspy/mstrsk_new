@@ -1,0 +1,26 @@
+extends ../../layout
+
+block title
+	title СПИСОК СТИЛЕЙ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/lists.js')
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title СПИСОК СТИЛЕЙ
+	br
+	a.add(href='/auth/ages/add') добавить стиль
+	br
+	br
+	.main_menu_block
+		each age in ages
+			.age
+				a.rm_age(href='#', id=age._id)= 'удалить '
+				!=' | '
+				a(href='/auth/ages/' + age._id + '/edit')= age.i18n.title.get('ru')
+				!=' --> '
+				a(href='/auth/ages/' + age._id + '/sub') эпохи

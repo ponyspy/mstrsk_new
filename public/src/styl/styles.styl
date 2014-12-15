@@ -1,0 +1,224 @@
+.navigate_block
+	width 1280px
+	margin 10px auto
+	background-color white
+	z-index 999999
+	height 45px
+
+.navigate_styles_block
+	white-space nowrap
+	font-size 0
+	width 1280px
+	overflow-y hidden
+	height 70px
+	-webkit-overflow-scrolling touch
+
+.navigate_styles_inner
+	display inline-block
+	height 60px
+	overflow hidden
+
+.navigate_style_block
+	display inline-block
+	position relative
+
+.navigate_style_title
+	cursor pointer
+	margin-right 15px
+	font-size 24px
+	&.not_sub
+		color #aeaeae
+	&.current
+		color red
+	&:hover
+		color red
+	&:after
+		content '>'
+		color black
+		font-size 21px
+		margin-left 15px
+
+.navigate_style_progress
+	margin-top 5px
+	margin-bottom 3px
+	height 2px
+	background-color red
+	width 0%
+	&.on_scroll
+		&:after
+			display block
+			margin-top -1.7px
+			float right
+			content ''
+			width 6px
+			height 6px
+			border-radius 6px
+			background-color red
+
+.navigate_style_ages
+	display none
+	position absolute
+	white-space nowrap
+	font-size 0
+	left 0
+
+.navigate_style_ages_inner
+	position relative
+	display inline-block
+
+.navigate_age
+	display inline-block
+	cursor pointer
+	margin-right 10px
+	font-size 18px
+	&.current
+		color red
+	&:hover
+		color red
+
+.styles_block
+	white-space nowrap
+	overflow hidden
+	width 1280px
+	position absolute
+	left 50%
+	margin-left -640px
+	bottom 25px
+	top 115px
+
+.styles_inner, .style_block, .style_block_inner
+	display inline-block
+	vertical-align top
+	font-size 0
+	height: 100%
+
+.style_block
+	overflow hidden
+	width 1280px
+
+.style_block_inner
+	overflow auto
+	width 1300px
+	-webkit-overflow-scrolling touch
+
+.style_inner_height
+	overflow hidden
+
+.age_block
+	overflow hidden
+	min-height 300px  // !!!!!!!!!!!!!!
+
+.age_header
+.style_header
+	text-align center
+	margin-bottom 10px
+
+.style_header
+	margin-top 10px
+
+.age_title
+.style_title
+	padding-left 10px
+	padding-right 10px
+	font-size 18px
+	background-color white
+	display inline-block
+	position relative
+	font-family 'ma_unitwmedium'
+
+.style_title
+	font-size 24px
+
+.age_line
+.style_line
+	position relative
+	background-color black
+	top 12px
+	width 100%
+	height 1px
+
+.age_description
+.style_description
+	width 1280px
+	margin-bottom 15px
+	position relative
+	color black
+	white-space normal
+	font-size 16px
+	hyphens auto
+
+.age_description
+	margin-bottom 25px
+
+.object_block
+	width 240px
+	height 220px
+	background-size cover
+	background-position center
+	font-size 18px
+	display block
+	float left
+	background-color #ececec
+	text-decoration none
+	margin-right 20px
+	margin-bottom 20px
+	&:nth-child(5n)
+		margin-right 0px
+	&:hover .object_description
+		color red
+
+.object_description
+	font-size 16px
+	line-height 18px
+	position relative
+	top 100%
+
+.object_date
+	font-size 16px
+
+.object_description_inner
+	width 100%
+	background-color white
+	position absolute
+	bottom 0
+
+.object_title
+	padding-top 3px
+	overflow hidden
+	white-space normal
+	// hyphens auto
+
+
+// Media start ---
+
+
+// @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)
+@media screen and (max-width: 1280px)
+	.search_inner
+	.content_block
+	.header_block_inner
+	.navigate_block
+	.navigate_styles_block
+	.styles_block
+	.style_block
+	.age_description
+	.style_description
+		width 980px
+
+	.style_block_inner
+		width 1000px
+
+	.styles_block
+		margin-left -490px
+
+	.object_block
+		width 230px
+		&:nth-child(5n)
+			margin-right 20px
+		&:nth-child(4n)
+			margin-right 0px
+
+.navigate_style_progress
+	&.on_scroll
+		&:after
+			margin-top -2px

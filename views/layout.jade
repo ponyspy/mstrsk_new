@@ -1,0 +1,57 @@
+doctype html
+html
+	block paths
+	head
+		include header
+	body
+		- var date = new Date()
+		//- include counters
+		.header_block
+			.header_block_inner
+				.header_logo
+				.logo_description Государственный музей архитектуры имени А. В. Щусева
+				.menu_navigate_block
+					- if (session.user_id)
+						a(href='/auth') ЗВЕЗДОЧЕТ
+					a(href='/') Главная
+					a(href='/styles') Стили
+					a(href='/projects') Спецпроекты
+					a(href='/architects') Архитекторы
+					a(href='/subjects') Единицы хранения
+					a(href='/categorys') Термины
+				.menu_block
+					.menu_item.search 
+					.menu_item.lang 
+		.content_title_block
+			- if (admin)
+				a(href='/auth') ЗВЕЗДОЧЕТ
+				a(href='/auth/ages') Стили
+				a(href='/auth/objects') Объекты
+				a(href='/auth/projects') Спецпроекты
+				a(href='/auth/architects') Архитекторы
+				a(href='/auth/categorys') Термины
+			block content_title
+		.content_search_block
+			.search_inner
+				.search_title Найти:
+				input.search_field(type='text', placeholder='...')
+				.search_result
+					.objects_context
+						.context_title Объекты:
+						.context_results_block
+					.architects_context
+						.context_title Архитекторы:
+						.context_results_block
+					.subjects_context
+						.context_title Единицы хранения:
+						.context_results_block
+		.content_block
+			block content
+		.footer_block
+			.footer_block_inner
+				.footer_content_block
+					block footer
+				.footer_sponsors_block
+					a.sponsor_info(href='http://culture.ru' + ref, target='_blank') Культура.рф
+					a.sponsor_info(href='http://muar.ru', target='_blank') Музей архитектуры имени А.В. Щусева
+					span.sponsor_date &copy; 2014

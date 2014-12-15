@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'ma_unitwmedium';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/maunitmediumweb-webfont.eot');
+    src: url('/fonts/maunitmediumweb-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('/fonts/maunitmediumweb-webfont.woff') format('woff'),
+                 url('/fonts/maunitmediumweb-webfont.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'ma_unitwmedium_italic';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/maunitmediumitalicweb-webfont.eot');
+    src: url('/fonts/maunitmediumitalicweb-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('/fonts/maunitmediumitalicweb-webfont.woff') format('woff'),
+                 url('/fonts/maunitmediumitalicweb-webfont.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'ma_unitwlight';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/maunitlightweb-webfont.eot');
+    src: url('/fonts/maunitlightweb-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('/fonts/maunitlightweb-webfont.woff') format('woff'),
+                 url('/fonts/maunitlightweb-webfont.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'ma_unitwlight_italic';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/maunitlightitalicweb-webfont.eot');
+    src: url('/fonts/maunitlightitalicweb-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('/fonts/maunitlightitalicweb-webfont.woff') format('woff'),
+                 url('/fonts/maunitlightitalicweb-webfont.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'menu_icons';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/icons/menu.eot');
+    src: url('/fonts/icons/menu.eot#iefix') format('embedded-opentype'),
+                 url('/fonts/icons/menu.woff') format('woff'),
+                 url('/fonts/icons/menu.ttf') format('truetype');
+}

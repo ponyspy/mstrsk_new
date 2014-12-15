@@ -1,0 +1,30 @@
+extends ../../layout
+
+block title
+	title ЕДИНИЦЫ ХРАНЕНИЯ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/lists.js')
+
+block content
+	a.back_link(href='/auth/objects') < Назад
+	.title ЕДИНИЦЫ ХРАНЕНИЯ
+	br
+	a.add(href='/auth/objects/' + object._id + '/subjects/add') добавить единицу хранения
+	br
+	br
+	.main_menu_block
+		if (object.subjects.length > 0)
+			each subject,i in object.subjects
+				.subject
+					.subject_size= sizes[i].width + 'x' + sizes[i].height
+					.subjetc_number= subject.meta.inventory
+					img.subject_preview(src='/images/subjects/' + subject._id + '/thumb.jpg')
+					a.rm_subject(href='#', id=subject._id)= 'удалить '
+					!=' | '
+					a(href='/auth/objects/' + object._id + '/subjects/edit/' + subject._id)= subject.i18n.title.get('ru')
+					!=' | '
+					a.tiles_gen(href='#', id=subject._id, class=subject.image.tiles ? 'ok' : '')= 'тайлы'

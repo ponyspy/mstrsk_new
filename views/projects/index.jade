@@ -1,0 +1,23 @@
+extends ../layout
+
+block title
+	title СПЕЦПРОЕКТЫ
+
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/special.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/architects.js' + version)
+
+block content_title
+	.projects_title Спецпроекты
+
+block content
+	.projects_block
+		each project in projects
+			a.project_block(href='/projects/' + project._id)
+				.project_image(style="background-image:url("+project.photo+")")
+				.project_description_block
+					.project_title= project.i18n.title.get('ru')
+					.project_description= project.i18n.description.get('ru')

@@ -1,0 +1,66 @@
+extends ../layout
+
+block title
+	title МУАР
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/index.js' + version)
+
+//- block content_title
+	.styles_block
+		.styles_inner_block
+			each age in ages
+				a.style_item(href='/styles/#' + age._id)
+					.style_name=age.i18n.title.get('ru')
+
+block content
+	.screen_block.intro_block
+		.intro_block_title
+			.intro_block_title_inner.screen_width
+				.main_title Виртуальный музей
+				.additional_title Государственного музея архитектуры им. А.В.Щусева
+				a.intro(href='/styles') Войти
+		.intro_block_background
+		.goto_down
+			.goto_down_inner.screen_width: a 
+
+	.screen_block.description_block.screen_block_height
+		.description_inner.screen_width
+			.description_title Виртуальный музей
+			.description_block
+				.description_block_inner
+					.description_column
+						p Виртуальный музей архитектуры – это специальный проект Государственного музея архитектуры им. А.В.Щусева, целью которогостановится знакомство самой широкой аудитории с уникальной коллекцией музея, насчитывающей более миллиона экспонатов.
+						p Сайт виртуального музеястроится на историческом принципе: вся история отечественной архитектуры делится на семь разделов-периодов.
+						p Каждый раздел открывают тексты, подготовленные научными сотрудниками Музея, и иллюстрируют материалы из различных фондов: отдела фототеки, графики и трехмерных объектов. При этом каждое изображение подробно аннотировано, а структура сайта позволяет сортировать архитектурные объекты по нескольким основным принципам: автору, стилю, времени и месту постройки.
+						p Таким образом,каждый пользователь и посетитель сайта сможет составить свою собственную подборку изображений, сформированную по одному или понескольким параметрам.
+					.description_column
+						.description_logos
+							img(src='/images/design/krf.png')
+							img(src='/images/design/logo_big.png')
+
+
+	.screen_block.periods_block
+		.description_inner.screen_width
+			.description_title Представленные периоды
+			a.styles_line_nav.prev 
+			a.styles_line_nav.next 
+			.styles_line
+				.styles_inner_line
+					each age in ages
+						a.style_block(href='/styles#' + age._id)
+							.style_image(style="background-image:url(" + age.image.thumb + ")")
+							.style_title
+								.style_title_inner= age.i18n.title.get('ru')
+							.style_description
+								.style_description_inner: != age.i18n.description.get('ru')
+
+	.screen_block.special_block
+		.special_block_background
+		.special_block_inner
+			.special_block_title.title_block.screen_width
+				.description_title Спецпроекты
+

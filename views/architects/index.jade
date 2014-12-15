@@ -1,0 +1,24 @@
+extends ../layout
+
+block title
+	title АРХИТЕКТОРЫ
+
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/architects.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/architects.js' + version)
+
+block content_title
+	.architects_title Архитекторы
+
+block content
+	.alphabet_block
+		each item in alphabet
+			.letter_block
+				.letter= item.letter
+				.letter_architects
+					each architect in item.objects
+						.architect_block
+							a.architect_name(href='/architects/' + architect._id)= architect.i18n.name.get('ru')

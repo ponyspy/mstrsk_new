@@ -1,0 +1,27 @@
+extends ../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ КАТЕГОРИЮ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/add.js')
+
+block content
+	.form_block
+		a.back_link(href='/auth/architects') < Назад
+		.title РЕДАКТИРОВАТЬ КАТЕГОРИЮ
+		form(action="", method="post", enctype="multipart/form-data")
+			.form_title Название:
+			input.ru(type="text", name="ru[title]", value=category.i18n.title.get('ru'))
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)= category.i18n.description.get('ru')
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Фото:
+			input(type="file", name="photo")
+			br
+			br
+			input(type='submit', value='сохранить')
