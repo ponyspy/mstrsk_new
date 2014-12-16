@@ -46,49 +46,6 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.use(function(req, res, next) {
-	if (req.query.partner && req.query.referrer) {
-		res.locals.ref = '?referrer=' + req.query.referrer + '&' + 'partner=' + req.query.partner;
-		res.cookie('partner', req.query.partner);
-		res.cookie('referrer', req.query.referrer);
-	}
-	else if (req.cookies.partner && req.cookies.referrer) {
-		res.locals.ref = '?referrer=' + req.cookies.referrer + '&' + 'partner=' + req.cookies.partner;
-	}
-	else {
-		res.locals.ref = ''
-	}
-	next();
-});
-
-
-// -------------------
-// *** Routes Block ***
-// -------------------
-
-
-var main = require('./routes/main.js');
-var styles = require('./routes/styles.js');
-var objects = require('./routes/objects.js');
-var architects = require('./routes/architects.js');
-var categorys = require('./routes/categorys.js');
-var projects = require('./routes/projects.js');
-var subjects = require('./routes/subjects.js');
-var auth = require('./routes/auth.js');
-var content = require('./routes/content.js');
-var files = require('./routes/files.js');
-var api = require('./routes/api.js');
-
-var a_ages = require('./routes/admin/ages.js');
-var a_objects = require('./routes/admin/objects.js');
-var a_subjects = require('./routes/admin/subjects.js');
-var a_architects = require('./routes/admin/architects.js');
-var a_categorys = require('./routes/admin/categorys.js');
-var a_projects = require('./routes/admin/projects.js');
-
-var options = require('./routes/admin/options.js');
-var globals = require('./routes/globals.js');
-
 
 // ------------------------
 // *** Midleware Block ***
@@ -106,237 +63,116 @@ function checkAuth (req, res, next) {
 }
 
 
+// -------------------
+// *** Router Block ***
+// -------------------
+
+
+var Router = {
+	'base': {
+		main: require('./routes/base/main.js'),
+		events: require('./routes/base/events.js'),
+		food: require('./routes/base/food.js'),
+		request: require('./routes/base/request.js')
+	},
+	'auth': require('./routes/auth.js'),
+	'admin': {
+		events: require('./routes/admin/events.js'),
+		requests: require('./routes/admin/requests.js'),
+		options: require('./routes/admin/options.js')
+	},
+	'static': {
+		content: require('./routes/static/content.js'),
+		files: require('./routes/static/files.js')
+	},
+	'old': {
+		globals: require('./routes/old/globals.js'),
+		api: require('./routes/old/api.js')
+	}
+}
+
+
 // ------------------------
-// *** Main Routers Block ***
+// *** Base Routes Block ***
 // ------------------------
 
 
 // === Main Route
-app.route('/').get(main.index);
+app.route('/').get(Router.base.main.index);
 
+// === Events Route
+// app.route('/events').get(Router.base.events.index);
 
-// === Styles Route
-app.route('/styles').get(styles.index);
+// === Event Route
+app.route('/events/:id').get(Router.base.events.event);
 
-
-// === get Objects Route
-app.route('/styles/get_objects').post(styles.get_objects);
-
-
-// === Object Route
-app.route('/objects/:id').get(objects.object);
-
-
-// === Architects Route
-app.route('/architects').get(architects.index);
-
-
-// === Architect Route
-app.route('/architects/:id').get(architects.architect);
-
-
-// === Categorys Route
-app.route('/categorys').get(categorys.index);
-
-
-// === Category Route
-app.route('/categorys/:id').get(categorys.category);
-
-
-// === Subjects Route
-app.route('/subjects').get(subjects.index);
-
-
-// === Subject Route
-app.route('/subjects/:id').get(subjects.subject);
-
-
-// === Projects Route
-app.route('/projects').get(projects.index);
-
-
-// === Projects Route
-app.route('/projects/:id').get(projects.project);
+// === Food Route
+app.route('/food').get(Router.base.food.index);
 
 
 // ------------------------
-// *** Admin Routers Block ***
+// *** Admin Routes Block ***
 // ------------------------
 
 
-// === Admin ages Route
-app.route('/auth/ages').get(checkAuth, a_ages.list);
+// === Admin events Route
+// app.route('/auth/events').get(checkAuth, Router.admin.events.list);
 
+// === Admin @add events Route
+app.route('/auth/events/add')
+	 // .get(checkAuth, Router.admin.events.add)
+	 // .post(checkAuth, Router.admin.events.add_form);
 
-// === Admin @add ages Route
-app.route('/auth/ages/add')
-	 .get(checkAuth, a_ages.add)
-	 .post(checkAuth, a_ages.add_form);
+// === Admin @edit events Route
+app.route('/auth/events/edit/:id')
+	 // .get(checkAuth, Router.admin.events.edit)
+	 // .post(checkAuth, Router.admin.events.edit_form);
 
-
-// === Admin @edit ages Route
-app.route('/auth/ages/:id/edit')
-	 .get(checkAuth, a_ages.edit)
-	 .post(checkAuth, a_ages.edit_form);
-
-
-// === Admin sub ages Route
-app.route('/auth/ages/:id/sub')
-	 .get(checkAuth, a_ages.list_sub)
-
-
-// === Admin @add sub ages Route
-app.route('/auth/ages/:age_id/sub/add')
-	 .get(checkAuth, a_ages.add)
-	 .post(checkAuth, a_ages.add_form);
-
-
-// === Admin @edit sub ages Route
-app.route('/auth/ages/:parent_age_id/sub/edit/:id')
-	 .get(checkAuth, a_ages.edit)
-	 .post(checkAuth, a_ages.edit_form);
-
-
-// === Admin objects Route
-app.route('/auth/objects').get(checkAuth, a_objects.list);
-
-
-// === Admin @add objects Route
-app.route('/auth/objects/add')
-	 .get(checkAuth, a_objects.add)
-	 .post(checkAuth, a_objects.add_form);
-
-
-// === Admin @edit objects Route
-app.route('/auth/objects/edit/:id')
-	 .get(checkAuth, a_objects.edit)
-	 .post(checkAuth, a_objects.edit_form);
-
-
-// === Admin architects Route
-app.route('/auth/architects').get(checkAuth, a_architects.list);
-
-
-// === Admin @add architects Route
-app.route('/auth/architects/add')
-	 .get(checkAuth, a_architects.add)
-	 .post(checkAuth, a_architects.add_form);
-
-
-// === Admin @edit architects Route
-app.route('/auth/architects/edit/:id')
-	 .get(checkAuth, a_architects.edit)
-	 .post(checkAuth, a_architects.edit_form);
-
-
-// === Admin categorys Route
-app.route('/auth/categorys').get(checkAuth, a_categorys.list);
-
-
-// === Admin @add categorys Route
-app.route('/auth/categorys/add')
-	 .get(checkAuth, a_categorys.add)
-	 .post(checkAuth, a_categorys.add_form);
-
-
-// === Admin @edit categorys Route
-app.route('/auth/categorys/edit/:id')
-	 .get(checkAuth, a_categorys.edit)
-	 .post(checkAuth, a_categorys.edit_form);
-
-
-// === Admin subjects Route
-app.route('/auth/objects/:object_id/subjects').get(checkAuth, a_subjects.list);
-
-
-// === Admin @add subjects Route
-app.route('/auth/objects/:object_id/subjects/add')
-	 .get(checkAuth, a_subjects.add)
-	 .post(checkAuth, a_subjects.add_form);
-
-
-// === Admin @edit subjects Route
-app.route('/auth/objects/:object_id/subjects/edit/:subject_id')
-	 .get(checkAuth, a_subjects.edit)
-	 .post(checkAuth, a_subjects.edit_form);
-
-
-// === Admin @add tiles Route
-app.route('/tiles_gen')
-	 .post(a_subjects.tiles_gen)
-
-
-// === Admin projects Route
-app.route('/auth/projects').get(checkAuth, a_projects.list);
-
-
-// === Admin @add projects Route
-app.route('/auth/projects/add')
-	 .get(checkAuth, a_projects.add)
-	 .post(checkAuth, a_projects.add_form);
-
-
-// === Admin @edit projects Route
-app.route('/auth/projects/edit/:id')
-	 .get(checkAuth, a_projects.edit)
-	 .post(checkAuth, a_projects.edit_form);
-
+app.route('/preview')
+	 // .post(Router.admin.options.preview)
 
 
 // ------------------------
-// *** Auth Routers Block ***
+// *** Auth Routes Block ***
 // ------------------------
 
 
 // === Auth Route
-app.route('/auth').get(checkAuth, auth.main);
-
+app.route('/auth').get(checkAuth, Router.auth.main);
 
 // === Login Route
 app.route('/login')
-	 .get(auth.login)
-	 .post(auth.login_form);
-
+	 .get(Router.auth.login)
+	 .post(Router.auth.login_form);
 
 // === Logout Route
-app.route('/logout').get(auth.logout);
-
+app.route('/logout').get(Router.auth.logout);
 
 // === Registr Route
 app.route('/registr')
-	 .get(auth.registr)
-	 .post(auth.registr_form);
+	 .get(Router.auth.registr)
+	 .post(Router.auth.registr_form);
 
 
 // ------------------------
-// *** Static Routers Block ***
+// *** Static Routes Block ***
 // ------------------------
 
 
 // === Contacts Route
-app.route('/contacts').get(content.contacts);
+app.route('/contacts').get(Router.static.content.contacts);
 
 
 // ------------------------
-// *** Old Routers Block ***
+// *** Old Routes Block ***
 // ------------------------
 
 
 // === Files #sitemap.xml Route
-app.route('/sitemap.xml').get(files.sitemap);
-
+app.route('/sitemap.xml').get(Router.static.files.sitemap);
 
 // === Files #robots.txt Route
-app.route('/robots.txt').get(files.robots);
-
-
-// ------------------------
-// *** Options Routers Block ***
-// ------------------------
-
-
-app.route('/preview')
-	 .post(options.preview)
+app.route('/robots.txt').get(Router.static.files.robots);
 
 
 // ------------------------
@@ -345,20 +181,19 @@ app.route('/preview')
 
 
 // === Locale Route
-app.route('/lang/:locale').get(globals.locale);
-
+app.route('/lang/:locale').get(Router.old.globals.locale);
 
 // === Search Route
-app.route('/search').post(globals.search);
+app.route('/search').post(Router.old.globals.search);
 
 
 // ------------------------
-// *** Globals Routers Block ***
+// *** API Routes Block ***
 // ------------------------
 
 
 // === API v1 Route
-app.route('/api/v1').get(api.check, api.v1);
+app.route('/api/v1').get(Router.old.api.check, Router.old.api.v1);
 
 
 // ------------------------

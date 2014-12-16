@@ -1,9 +1,9 @@
 var async = require('async');
 
-var Age = require('../models/main.js').Age;
-var Object = require('../models/main.js').Object;
-var Subject = require('../models/main.js').Subject;
-var Architect = require('../models/main.js').Architect;
+var Age = require('../../models/main.js').Age;
+var Object = require('../../models/main.js').Object;
+var Subject = require('../../models/main.js').Subject;
+var Architect = require('../../models/main.js').Architect;
 
 exports.locale = function(req, res) {
 	res.cookie('locale', req.params.locale);

@@ -1,9 +1,9 @@
-var User = require('../models/main.js').User;
-var Object = require('../models/main.js').Object;
-var Subject = require('../models/main.js').Subject;
-var Architect = require('../models/main.js').Architect;
-var Category = require('../models/main.js').Category;
-var Age = require('../models/main.js').Age;
+var User = require('../../models/main.js').User;
+var Object = require('../../models/main.js').Object;
+var Subject = require('../../models/main.js').Subject;
+var Architect = require('../../models/main.js').Architect;
+var Category = require('../../models/main.js').Category;
+var Age = require('../../models/main.js').Age;
 
 
 // ------------------------
