@@ -1,0 +1,125 @@
+extends ../../layout
+
+block title
+	title РЕДАКТИРОВАТЬ СОБЫТИЕ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/add.js')
+
+block content
+	- var year = new Date()
+	- year = year.getFullYear()
+	- var months = ['ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ', 'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ', 'ИЮЛЬ', 'АВГУСТ', 'СЕНТЯБРЬ', 'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ']
+	.form_block
+		a.back_link(href='/auth/events') < Назад
+		.title РЕДАКТИРОВАТЬ СОБЫТИЕ
+		form(action="", method="post")
+			.form_title Заголовок:
+			input.ru(type="text", name="ru[title]", value=event.i18n.title.get('ru'))
+			input.en(type="text", name="en[title]", disabled)
+			.form_title Зал:
+			input.ru(type="text", name="ru[hall]", value=event.hall)
+			input.en(type="text", name="en[hall]", disabled)
+			.form_title Описание:
+			textarea.ru(name="ru[description]", rows="8",)= event.i18n.description.get('ru')
+			textarea.en(name="en[description]", rows="8", disabled)
+			.form_title Возраст:
+			input.ru(type="text", name="ru[age]", value=event.age)
+			input.en(type="text", name="en[age]", disabled)
+			.form_title Категория:
+			select(name='category')
+				option(value='children', selected=event.category == 'children') детский праздник
+				option(value='performance', selected=event.category == 'performance') спектакль
+				option(value='tour', selected=event.category == 'tour') экскурсия
+				option(value='writers', selected=event.category == 'writers') встреча с писателями
+				option(value='music', selected=event.category == 'music') музыка
+				option(value='master_class', selected=event.category == 'master_class') мастер-класс/студия
+				option(value='literature', selected=event.category == 'literature') литературное занятие
+				option(value='lecture', selected=event.category == 'lecture') лекция
+				option(value='roundtable', selected=event.category == 'roundtable') круглый стол
+				option(value='film', selected=event.category == 'film') кинопоказ
+				option(value='filmstrip', selected=event.category == 'filmstrip') диафильм
+				option(value='animation', selected=event.category == 'animation') мультипликация
+				option(value='animation_lecture', selected=event.category == 'animation_lecture') мультипликация/лекция
+				option(value='recital', selected=event.category == 'recital') творческий вечер
+				//- .form_title Фото:
+				//- input(type="file", name="photo")
+			.form_title Расписание:
+			if event.schedule.length > 0
+				each date in event.schedule
+					.snake
+						button.back(type='button') удалить
+						b= ' | '
+						b Дата:
+						- var now = new Date()
+						select(name='schedule[date][]')
+							option(value='') День
+							- for (var i=1; i<32; i++)
+								- var day = i <= 9 ? '0' + i : i
+								option(value=i, selected=(i == date.getUTCDate()))= day
+						b /
+						select(name='schedule[month][]')
+							option(value='') Месяц
+							each month, i in months
+								option(value=i, selected=(i == date.getUTCMonth()))= month
+						b /
+						select(name='schedule[year][]')
+							option(value='') Год
+							option(value=year, selected=(year == date.getUTCFullYear()))= year
+							option(value=year - 1, selected=(year - 1 == date.getUTCFullYear()))= year - 1
+						b Время:
+						select(name='schedule[hours][]')
+							option(value='') Часы
+							- for (var i=0; i<24; i++)
+								- var hour = i <= 9 ? '0' + i : i
+								option(value=i, selected=(i == date.getUTCHours()))= hour
+						b :
+						select(name='schedule[minutes][]')
+							option(value='') Минуты
+							- for (var i=0; i<60; i+=10)
+								- var minute = i == 0 ? '0' + i : i
+								option(value=i, selected=(i == date.getMinutes()))= minute
+						br
+						br
+			else
+				.snake
+					button.back(type='button') удалить
+					b= ' | '
+					b Дата:
+					- var now = new Date()
+					select(name='schedule[date][]')
+						option(value='') День
+						- for (var i=1; i<32; i++)
+							- var day = i <= 9 ? '0' + i : i
+							option(value=i,)= day
+					b /
+					select(name='schedule[month][]')
+						option(value='') Месяц
+						each month, i in months
+							option(value=i,)= month
+					b /
+					select(name='schedule[year][]')
+						option(value='') Год
+						option(value=year, selected=(year == now.getFullYear()))= year
+						option(value=year - 1, selected=(year - 1 == now.getFullYear()))= year - 1
+					b Время:
+					select(name='schedule[hours][]')
+						option(value='') Часы
+						- for (var i=0; i<24; i++)
+							- var hour = i <= 9 ? '0' + i : i
+							option(value=i,)= hour
+					b :
+					select(name='schedule[minutes][]')
+						option(value='') Минуты
+						- for (var i=0; i<60; i+=10)
+							- var minute = i == 0 ? '0' + i : i
+							option(value=i,)= minute
+					br
+					br
+			button(type='button').forward добавить дату
+			br
+			br
+			input(type='submit', value='отправить')

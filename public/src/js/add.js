@@ -1,5 +1,9 @@
 $(document).ready(function() {
+	var count = $('.child').size();
 	var eng = true;
+	var event = false;
+	var project = false;
+	var news = false;
 
 
 // ------------------------
@@ -28,31 +32,22 @@ $(document).ready(function() {
 	}
 
 
+
 // ------------------------
 // *** Constructors Block ***
 // ------------------------
 
 
-	$('.sub').hide().eq(0).show().children('input').attr('disabled', false);
-	$('.glob').change(function() {
-		var index = $(this).children('option:selected').index();
-	  $('.sub').hide().eq(index).show();
-	  $('.sub').children('input').attr('disabled', true);
-	  $('.sub').eq(index).children('input').attr('disabled', false);
-	});
-
-
 	function snakeForward () {
-		var snake = $(this).closest('.snake').children('select');
+		var snake = $('.snake');
 		snake.first().clone()
 			.find('option').prop('selected', false).end()
 			.insertAfter(snake.last());
 	}
 
 	function snakeBack () {
-		var snake = $(this).closest('.snake').children('select');
-		if (snake.size() == 1) return null;
-		snake.last().remove();
+		if ($('.snake').size() == 1) return null;
+		$(this).parent('.snake').remove();
 	}
 
 
@@ -69,5 +64,7 @@ $(document).ready(function() {
 		});
 		$('form').submit();
 	});
+
+
 
 });

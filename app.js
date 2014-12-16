@@ -116,17 +116,17 @@ app.route('/food').get(Router.base.food.index);
 
 
 // === Admin events Route
-// app.route('/auth/events').get(checkAuth, Router.admin.events.list);
+app.route('/auth/events').get(checkAuth, Router.admin.events.list);
 
 // === Admin @add events Route
 app.route('/auth/events/add')
-	 // .get(checkAuth, Router.admin.events.add)
-	 // .post(checkAuth, Router.admin.events.add_form);
+	 .get(checkAuth, Router.admin.events.add)
+	 .post(checkAuth, Router.admin.events.add_form);
 
 // === Admin @edit events Route
 app.route('/auth/events/edit/:id')
-	 // .get(checkAuth, Router.admin.events.edit)
-	 // .post(checkAuth, Router.admin.events.edit_form);
+	 .get(checkAuth, Router.admin.events.edit)
+	 .post(checkAuth, Router.admin.events.edit_form);
 
 app.route('/preview')
 	 // .post(Router.admin.options.preview)
@@ -201,36 +201,36 @@ app.route('/api/v1').get(Router.old.api.check, Router.old.api.v1);
 // ------------------------
 
 
-app.use(function(req, res, next) {
-	var accept = accepts(req);
-	res.status(404);
+// app.use(function(req, res, next) {
+// 	var accept = accepts(req);
+// 	res.status(404);
 
-	// respond with html page
-	if (accept.types('html')) {
-		res.render('error', { url: req.url, status: 404 });
-		return;
-	}
+// 	// respond with html page
+// 	if (accept.types('html')) {
+// 		res.render('error', { url: req.url, status: 404 });
+// 		return;
+// 	}
 
-	// respond with json
-	if (accept.types('json')) {
-			res.send({
-			error: {
-				status: 'Not found'
-			}
-		});
-		return;
-	}
+// 	// respond with json
+// 	if (accept.types('json')) {
+// 			res.send({
+// 			error: {
+// 				status: 'Not found'
+// 			}
+// 		});
+// 		return;
+// 	}
 
-	// default to plain-text
-	res.type('txt').send('Not found');
-});
+// 	// default to plain-text
+// 	res.type('txt').send('Not found');
+// });
 
-app.use(function(err, req, res, next) {
-	var status = err.status || 500;
+// app.use(function(err, req, res, next) {
+// 	var status = err.status || 500;
 
-	res.status(status);
-	res.render('error', { error: err, status: status });
-});
+// 	res.status(status);
+// 	res.render('error', { error: err, status: status });
+// });
 
 
 // ------------------------

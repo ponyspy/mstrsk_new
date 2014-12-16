@@ -9,27 +9,18 @@ html
 		.header_block
 			.header_block_inner
 				.header_logo
-				.logo_description Государственный музей архитектуры имени А. В. Щусева
+				.logo_description Мастерская
 				.menu_navigate_block
 					- if (session.user_id)
 						a(href='/auth') ЗВЕЗДОЧЕТ
 					a(href='/') Главная
-					a(href='/styles') Стили
-					a(href='/projects') Спецпроекты
-					a(href='/architects') Архитекторы
-					a(href='/subjects') Единицы хранения
-					a(href='/categorys') Термины
 				.menu_block
 					.menu_item.search 
 					.menu_item.lang 
 		.content_title_block
 			- if (admin)
 				a(href='/auth') ЗВЕЗДОЧЕТ
-				a(href='/auth/ages') Стили
-				a(href='/auth/objects') Объекты
-				a(href='/auth/projects') Спецпроекты
-				a(href='/auth/architects') Архитекторы
-				a(href='/auth/categorys') Термины
+				a(href='/auth/events') События
 			block content_title
 		.content_search_block
 			.search_inner
