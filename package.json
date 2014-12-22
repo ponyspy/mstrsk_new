@@ -1,7 +1,7 @@
 {
   "name": "mstrsk",
   "version": "1.0.0",
-  "description": "muar ====",
+  "description": "mstrsk ====",
   "main": "app.js",
   "dependencies": {
     "accepts": "^1.1.0",
@@ -40,12 +40,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nrdn/muar.git"
+    "url": "https://github.com/ponyspy/mstrsk_new.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nrdn/muar/issues"
+    "url": "https://github.com/ponyspy/mstrsk_new/issues"
   },
-  "homepage": "https://github.com/nrdn/muar"
+  "homepage": "https://github.com/ponyspy/mstrsk_new"
 }
