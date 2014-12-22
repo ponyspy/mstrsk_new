@@ -28,7 +28,8 @@ var eventSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
 	category: String,
-	age: String,
+	age: Number,
+	price: Number,
 	hall: String,
 	schedule: [{
 		date: Date,

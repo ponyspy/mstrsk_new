@@ -1,7 +1,7 @@
 extends ../layout
 
 block title
-	title МУАР
+	title Мастерская
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
@@ -9,16 +9,20 @@ block content_style
 block content_scripts
 	script(type='text/javascript', src='/build/js/index.js' + version)
 
-//- block content_title
-	.styles_block
-		.styles_inner_block
-			each age in ages
-				a.style_item(href='/styles/#' + age._id)
-					.style_name=age.i18n.title.get('ru')
 
 block content
-	.events_block
-		each event in events
-			.event_block
-				.event_title= event.i18n.title.get(locale);
-
+	.schedule_block
+		each item in schedule
+			.schedule_month_block
+				br
+				.schedule_month= 'Месяц: ' + item._id.month
+				br
+				.schedule_dates_block
+					each date in item.dates
+						.schedule_date= 'Дата: ' + date.date
+						.schedule_date_events
+							each event in date.events
+								.event_block
+									.event_title= 'Название: ' + event.title[0].value
+									.event_hall= 'Зал: ' + event.hall
+									br

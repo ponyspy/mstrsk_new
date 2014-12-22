@@ -27,8 +27,9 @@ block content
 			textarea.ru(name="ru[description]", rows="8",)
 			textarea.en(name="en[description]", rows="8", disabled)
 			.form_title Возраст:
-			input.ru(type="text", name="ru[age]",)
-			input.en(type="text", name="en[age]", disabled)
+			input(type="text", name="age",)
+			.form_title Цена:
+			input(type="text", name="price",)
 			.form_title Категория:
 			select(name='category')
 				option(value='children') детский праздник

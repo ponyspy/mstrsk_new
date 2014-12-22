@@ -30,7 +30,7 @@ exports.add_form = function(req, res) {
 
   sh.date.forEach(function(el, index) {
     var date = new Date(Date.UTC(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]));
-    schedule.push(date);
+    schedule.push({date: date, premiere: sh.premiere[index] || false});
   });
 
   event.title = [{
@@ -43,7 +43,8 @@ exports.add_form = function(req, res) {
   }];
 
   event.hall = post.ru.hall;
-  event.age = post.ru.age;
+  event.price = post.price;
+  event.age = post.age;
   event.category = post.category;
   event.schedule = schedule;
 
@@ -75,7 +76,7 @@ exports.edit_form = function(req, res) {
 
   sh.date.forEach(function(el, index) {
     var date = new Date(Date.UTC(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]));
-    schedule.push(date);
+    schedule.push({date: date, premiere: sh.premiere[index] || false});
   });
 
   Event.findById(id).exec(function(err, event) {
@@ -83,7 +84,8 @@ exports.edit_form = function(req, res) {
     object.i18n.description.set(post.ru.description, 'ru');
 
     event.hall = post.ru.hall;
-    event.age = post.ru.age;
+    event.price = post.price;
+    event.age = post.age;
     event.category = post.category;
     event.schedule = schedule;
 
