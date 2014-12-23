@@ -30,7 +30,7 @@ exports.add_form = function(req, res) {
 
   sh.date.forEach(function(el, index) {
     var date = new Date(Date.UTC(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]));
-    schedule.push({date: date, premiere: sh.premiere[index] || false});
+    schedule.push({date: date, premiere: sh.premiere ? (sh.premiere[index] || false) : false});
   });
 
   event.title = [{
@@ -76,7 +76,7 @@ exports.edit_form = function(req, res) {
 
   sh.date.forEach(function(el, index) {
     var date = new Date(Date.UTC(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]));
-    schedule.push({date: date, premiere: sh.premiere[index] || false});
+    schedule.push({date: date, premiere: sh.premiere ? (sh.premiere[index] || false) : false});
   });
 
   Event.findById(id).exec(function(err, event) {

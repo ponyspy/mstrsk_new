@@ -43,6 +43,39 @@ var eventSchema = new Schema({
 	date: {type: Date, default: Date.now}
 });
 
+var requestSchema = new Schema({
+	meta: {
+		name: String,
+		phone: String,
+		email: String
+	},
+	title: {
+		value: { type: String, trim: true },
+		approve: {type: Boolean, default: false},
+		comment: { type: String, trim: true }
+	},
+	description: {
+		value: { type: String, trim: true },
+		approve: {type: Boolean, default: false},
+		comment: { type: String, trim: true }
+	},
+	category: String,
+	age: Number,
+	price: Number,
+	hall: String,
+	type: String,
+	schedule: [{
+		date: Date,
+		premiere: Boolean
+	}],
+	images: [{
+		description: { type: String, trim: true, locale: true },
+		original: String,
+		thumb: String
+	}],
+	date: {type: Date, default: Date.now}
+});
+
 
 // ------------------------
 // *** Plugins Block ***
@@ -75,3 +108,4 @@ eventSchema.set('autoIndex', true);
 module.exports.User = mongoose.model('User', userSchema);
 module.exports.Food = mongoose.model('Food', foodSchema);
 module.exports.Event = mongoose.model('Event', eventSchema);
+module.exports.Request = mongoose.model('Request', requestSchema);
