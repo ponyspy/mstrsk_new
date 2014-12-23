@@ -1,8 +1,8 @@
 var Event = require('../../models/main.js').Event;
 
 exports.index = function(req, res) {
-  var start = new Date(Date.UTC(2014, 0, 1));
-  var end = new Date(Date.UTC(2014, 11, 30));
+  var start = new Date(Date.UTC(2010, 0, 1));
+  var end = new Date(Date.UTC(2018, 11, 30));
 
 	Event.aggregate()
 	.unwind('schedule')

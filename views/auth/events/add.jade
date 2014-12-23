@@ -67,8 +67,9 @@ block content
 				b /
 				select(name='schedule[year][]')
 					option(value='') Год
-					option(value=year, selected=(year == now.getFullYear()))= year
 					option(value=year - 1, selected=(year - 1 == now.getFullYear()))= year - 1
+					option(value=year, selected=(year == now.getFullYear()))= year
+					option(value=year + 1, selected=(year + 1 == now.getFullYear()))= year + 1
 				b Время:
 				select(name='schedule[hours][]')
 					option(value='') Часы
